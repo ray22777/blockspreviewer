@@ -18,6 +18,7 @@ public class SimpleConfig {
 
     public static class ConfigData {
         public boolean allBlocks = true;
+        public float opacity = 0.62f;
     }
 
     public static void load() {
@@ -61,4 +62,9 @@ public class SimpleConfig {
         config.allBlocks = !config.allBlocks;
         save();
     }
+
+    public static float getOpacity() {
+        return config.opacity;
+    }
+
 }

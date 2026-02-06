@@ -7,15 +7,19 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
+import net.ray.blockpreview.config.SimpleConfig;
 
 public class RenderHelper {
     public static void renderGhostBlock(PoseStack poseStack, BlockState state, BlockPos pos, Minecraft mc) {
         if (state == null || mc.level == null || mc.player == null) return;
 
+        float opacity = SimpleConfig.getOpacity();
+
+
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.depthMask(false);
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.62f);
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, opacity);
 
         MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
 
