@@ -11,10 +11,11 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.LightLayer;
+import net.ray.blockpreview.config.SimpleConfig;
 
 public class RenderHelper {
     public static void renderGhostBlock(PoseStack poseStack, BlockState state, BlockPos pos, Minecraft mc) {
-        float alpha = 0.62f;
+        float alpha = SimpleConfig.getAlpha();
         if (state == null || mc.level == null) return;
 
         int blockLight = mc.level.getBrightness(LightLayer.BLOCK, pos);
