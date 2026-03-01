@@ -19,6 +19,7 @@ public class SimpleConfig {
 
     public static class ConfigData {
         public boolean allBlocks = true;
+        public float alpha = 0.62f;
     }
 
     public static void load() {
@@ -61,5 +62,9 @@ public class SimpleConfig {
     public static void toggleBlockFilter() {
         config.allBlocks = !config.allBlocks;
         save();
+    }
+
+    public static float getAlpha() {
+        return config.alpha;
     }
 }
