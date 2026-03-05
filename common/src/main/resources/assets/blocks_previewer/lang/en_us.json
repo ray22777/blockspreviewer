@@ -1,0 +1,38 @@
+{
+  "key.category.minecraft.blockpreview": "Block Preview",
+  "key.blockpreview.toggle": "Toggle Preview",
+  "key.blockpreview.hold": "Hold to Show Preview",
+  "key.blockpreview.toggle_filter": "Change Block Filter",
+
+  "text.autoconfig.blockspreviewer.option.enableMod": "Enable Mod",
+  "text.autoconfig.blockspreviewer.option.enableMod.@Tooltip": "Enable mod",
+
+  "text.autoconfig.blockspreviewer.option.togglePreview": "Toggle Preview",
+  "text.autoconfig.blockspreviewer.option.togglePreview.@Tooltip": "Toggle between enabled and disabled",
+
+  "text.autoconfig.blockspreviewer.option.blockFilter": "Block Filter",
+  "text.autoconfig.blockspreviewer.option.blockFilter.@Tooltip": "Enable only when the block has multiple orientations/states.",
+
+  "text.autoconfig.blockspreviewer.option.previewMode": "Preview Mode",
+  "text.autoconfig.blockspreviewer.option.previewMode.@Tooltip": "How the preview is shown.",
+
+  "text.autoconfig.blockspreviewer.option.previewMode.TRANSPARENT": "Transparent",
+  "text.autoconfig.blockspreviewer.option.previewMode.OUTLINE": "Outline",
+
+  "text.autoconfig.blockspreviewer.option.previewActivation": "Preview Activation",
+  "text.autoconfig.blockspreviewer.option.previewActivation.@Tooltip": "Conditions to enable the preview.",
+
+  "text.autoconfig.blockspreviewer.option.previewActivation.TOGGLE": "Toggle",
+  "text.autoconfig.blockspreviewer.option.previewActivation.HOLD": "Hold",
+
+  "text.autoconfig.blockspreviewer.option.transparentOpacity": "Transparent Opacity",
+  "text.autoconfig.blockspreviewer.option.transparentOpacity.@Tooltip": "Opacity for transparent rendering.",
+
+  "text.autoconfig.blockspreviewer.option.outlineColor": "Outline Color",
+  "text.autoconfig.blockspreviewer.option.outlineColor.@Tooltip[0]": "Color setting for outline rendering.",
+  "text.autoconfig.blockspreviewer.option.outlineColor.@Tooltip[1]": "Uses hex values, and supports alpha values infront.",
+  "text.autoconfig.blockspreviewer.option.outlineColor.@Tooltip[2]": "E.g. an extra FF is added infront for 100% opacity",
+
+  "text.autoconfig.blockspreviewer.option.disableOutline": "Disable Vanilla Outline",
+  "text.autoconfig.blockspreviewer.option.disableOutline.@Tooltip": "Disable vanilla block outline when block placement is shown in outline mode."
+}

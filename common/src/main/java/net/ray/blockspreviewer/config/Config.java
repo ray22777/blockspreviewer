@@ -4,7 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 
-@me.shedaniel.autoconfig.annotation.Config(name = "blocks-previewer")
+@me.shedaniel.autoconfig.annotation.Config(name = "blockspreviewer")
 public class Config implements ConfigData {
     @ConfigEntry.Gui.Tooltip() //Enable mod
     public boolean enableMod = true;
