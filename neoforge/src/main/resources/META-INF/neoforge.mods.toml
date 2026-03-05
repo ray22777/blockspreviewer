@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "blocks_previewer"
+version = "${version}"
+displayName = "Blocks Previewer"
+authors = "ray"
+description = '''
+Display item names above dropped items for easy identification! Fully customizable and client-sided.
+'''
+#logoFile = ""
+
+[[dependencies.blocks_previewer]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.blocks_previewer]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.11,)"
+ordering = "NONE"
+side = "BOTH"
+
+
+[[mixins]]
+config = "blocks_previewer.mixins.json"

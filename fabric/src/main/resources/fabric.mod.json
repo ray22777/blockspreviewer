@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "blocks_previewer",
+  "version": "${version}",
+  "name": "Blocks Previewer",
+  "description": "Client-side mod to preview how blocks will be orientated when placed!",
+  "authors": [
+    "ray"
+  ],
+  "license": "MIT",
+  "icon": "assets/blocks_previewer/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.ray.blockspreviewer.fabric.BlocksPreviewerFabric"
+    ],
+    "client": [
+      "net.ray.blockspreviewer.fabric.client.BlocksPreviewerFabricClient"
+    ],
+    "modmenu": [
+      "net.ray.blockspreviewer.fabric.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "blocks_previewer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": ">=1.21.11",
+    "java": ">=21",
+    "fabric-api": "*",
+    "cloth-config": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
