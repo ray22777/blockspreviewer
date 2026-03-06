@@ -3,6 +3,7 @@
   "key.blockpreview.toggle": "Toggle Preview",
   "key.blockpreview.hold": "Hold to Show Preview",
   "key.blockpreview.toggle_filter": "Change Block Filter",
+  "text.autoconfig.blockspreviewer.title": "Blocks Previewer",
 
   "text.autoconfig.blockspreviewer.option.enableMod": "Enable Mod",
   "text.autoconfig.blockspreviewer.option.enableMod.@Tooltip": "Enable mod",
