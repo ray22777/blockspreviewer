@@ -2,7 +2,7 @@ package net.ray.quick_access.platform.fabric;
 
 //? fabric {
 
-import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
+/*import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.ray.quick_access.EventHandler;
@@ -18,4 +18,4 @@ public class FabricEntrypoint implements ModInitializer {
 //		FabricEventSubscriber.registerEvents();
 	}
 }
-//?}
+*///?}

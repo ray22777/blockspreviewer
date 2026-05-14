@@ -1,13 +1,29 @@
 package net.ray.quick_access;
 
+//?if<1.21{
+/*import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.ContainerHelper;
+*///?}
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.Tag;
+//?>=1.21
 import net.minecraft.core.component.DataComponents;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
+
 import net.minecraft.world.InteractionHand;
+//?if>=1.21.11{
 import net.minecraft.world.InteractionResult;
+//?}else{
+//import net.minecraft.world.InteractionResultHolder;
+//?}
+
+
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -24,18 +40,25 @@ import net.minecraft.world.inventory.ShulkerBoxMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.SmithingMenu;
 import net.minecraft.world.inventory.StonecutterMenu;
+
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+//?>=1.21
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
+
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 
+//? if <=1.21.1{
+/*import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.item.BlockItem;
+*///?}
 public class EventHandler {
 	public static boolean canOpen(ItemStack stack) {
 		return
 				(stack.is(Items.CRAFTING_TABLE) && Config.getBoolean("enableCraftingTable", true)) ||
 				(stack.is(Items.ENDER_CHEST) && Config.getBoolean("enableEnderChest", true)) ||
-				(stack.is(ItemTags.SHULKER_BOXES) && Config.getBoolean("enableShulkerBox", true)) ||
+				(isShulker(stack) && Config.getBoolean("enableShulkerBox", true)) ||
 				(stack.is(Items.LOOM) && Config.getBoolean("enableLoom", true)) ||
 				(stack.is(Items.CARTOGRAPHY_TABLE) && Config.getBoolean("enableCartographyTable", true)) ||
 				(stack.is(Items.STONECUTTER) && Config.getBoolean("enableStonecutter", true)) ||
@@ -82,7 +105,7 @@ public class EventHandler {
 					});
 			return true;
 		}
-		else if (stack.is(ItemTags.SHULKER_BOXES)) {
+		else if (isShulker(stack)) {
 			if(Config.getBoolean("playShulkerSound", true)){
 				player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
 						SoundEvents.SHULKER_BOX_OPEN, SoundSource.BLOCKS, 0.5f, 1.0f);
@@ -137,9 +160,29 @@ public class EventHandler {
 					saveToShulker(shulkerStack, slot, this);
 				}
 			};
-
+//? if >=1.21 {
 			ItemContainerContents existing = shulkerStack.get(DataComponents.CONTAINER);
-			if (existing != null) existing.copyInto(container.items);
+			if (existing != null) {
+				existing.copyInto(container.getItems());
+			}
+
+//?} else {
+			/*if (shulkerStack.hasTag() && shulkerStack.getTag().contains("BlockEntityTag")) {
+				CompoundTag blockEntityTag = shulkerStack.getTag().getCompound("BlockEntityTag");
+
+				if (blockEntityTag.contains("Items", Tag.TAG_LIST)) {
+					NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
+					ContainerHelper.loadAllItems(blockEntityTag, items);
+
+					for (int i = 0; i < items.size(); i++) {
+						container.setItem(i, items.get(i));
+					}
+
+
+
+				}
+			}
+*///?}
 
 			return new ShulkerBoxMenu(id, inv, container) {
 				@Override
@@ -151,6 +194,7 @@ public class EventHandler {
 					else{
 						item = slot.getItem();
 					}
+					//~ if >=1.21 'isSameItemSameTags' -> 'isSameItemSameComponents'
 					return !item.isEmpty() && ItemStack.isSameItemSameComponents(item, shulkerStack);
 				}
 
@@ -167,10 +211,19 @@ public class EventHandler {
 		});
 	}
 
-	private static void saveToShulker(ItemStack shulkerStack, Slot slot, SimpleContainer container) {
-		if (shulkerStack.isEmpty() || !shulkerStack.is(ItemTags.SHULKER_BOXES)) {
-			return;
+	private static boolean isShulker(ItemStack item){
+		//?if >=1.21.11{
+		if (item.is(ItemTags.SHULKER_BOXES)){
+		//?}else{
+		//if (item.getItem() instanceof BlockItem bi && bi.getBlock() instanceof ShulkerBoxBlock){
+		//?}
+			return true;
 		}
+		return false;
+	}
+
+	private static void saveToShulker(ItemStack shulkerStack, Slot slot, SimpleContainer container) {
+		if (shulkerStack.isEmpty() || !isShulker(shulkerStack)) return;
 
 		boolean hasItems = false;
 		for (int i = 0; i < container.getContainerSize(); i++) {
@@ -180,11 +233,38 @@ public class EventHandler {
 			}
 		}
 
+//? if >=1.21 {
 		if (hasItems) {
-			shulkerStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(container.items));
+			shulkerStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(container.getItems()));
+
 		} else {
 			shulkerStack.remove(DataComponents.CONTAINER);
 		}
+//?} else {
+		/*CompoundTag blockEntityTag = new CompoundTag();
+
+		if (hasItems) {
+			//? if forge {
+						/^NonNullList<ItemStack> items = NonNullList.withSize(container.getContainerSize(), ItemStack.EMPTY);
+						for (int i = 0; i < container.getContainerSize(); i++) {
+							items.set(i, container.getItem(i));
+						}
+						ContainerHelper.saveAllItems(blockEntityTag, items);
+			^///?} else {
+						ContainerHelper.saveAllItems(blockEntityTag, container.items);
+			//?}
+			shulkerStack.getOrCreateTag().put("BlockEntityTag", blockEntityTag);
+		} else {
+			if (shulkerStack.hasTag()) {
+				CompoundTag tag = shulkerStack.getTag();
+				tag.remove("BlockEntityTag");
+
+				if (tag.isEmpty()) {
+					shulkerStack.setTag(null);
+				}
+			}
+		}
+*///?}
 	}
 
 	public static void open(ServerPlayer player, Component title, MenuConstructor constructor) {
@@ -200,17 +280,33 @@ public class EventHandler {
 	public interface MenuConstructor {
 		AbstractContainerMenu create(int id, Inventory inv, Player p);
 	}
-
-
+	//probably better way to do this
+	//?if>=1.21.11{
 	public static InteractionResult onRightClick(Player player, Level level, InteractionHand hand) {
 		if (level.isClientSide() || hand != InteractionHand.MAIN_HAND) {
 			return InteractionResult.PASS;
 		}
 		ItemStack held = player.getItemInHand(hand);
 		if(EventHandler.canOpen(held)){
+
 			EventHandler.tryOpen((ServerPlayer) player,held,null,true);
+			//~ if >=1.21.11 'SUCCESS_NO_ITEM_USED' -> 'SUCCESS_SERVER'
 			return InteractionResult.SUCCESS_SERVER;
 		}
 		return InteractionResult.PASS;
 	}
+	//?}else{
+	/*public static InteractionResultHolder<ItemStack> onRightClick(Player player, Level level, InteractionHand hand) {
+		ItemStack held = player.getItemInHand(hand);
+		if (level.isClientSide() || hand != InteractionHand.MAIN_HAND) {
+			return InteractionResultHolder.pass(held);
+		}
+		if (EventHandler.canOpen(held)) {
+			EventHandler.tryOpen((ServerPlayer) player, held, null, true);
+			return InteractionResultHolder.success(held);
+		}
+		return InteractionResultHolder.pass(held);
+	}
+	*///?}
+
 }

@@ -1,15 +1,19 @@
-package net.ray.fast_access.platform.forge;
+package net.ray.quick_access.platform.forge;
 
 //? forge {
 
-/*import net.ray.fast_access.ModTemplate;
+/*import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.ray.quick_access.EventHandler;
+import net.ray.quick_access.ModInit;
 
-@Mod(ModTemplate.MOD_ID)
+@Mod(ModInit.MOD_ID)
 public class ForgeEntrypoint {
 
 	public ForgeEntrypoint() {
-		ModTemplate.onInitialize();
+		ModInit.onInitialize();
 	}
+
 }
 *///?}

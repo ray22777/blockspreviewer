@@ -3,15 +3,16 @@ package net.ray.quick_access;
 import net.ray.fast_access.platform.Platform;
 
 import net.minecraft.resources.Identifier;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //? fabric {
-import net.ray.fast_access.platform.fabric.FabricPlatform;
-//?} neoforge {
-/*import net.ray.fast_access.platform.neoforge.NeoforgePlatform;
- *///?} forge {
-/*import net.ray.fast_access.platform.forge.ForgePlatform;
+/*import net.ray.fast_access.platform.fabric.FabricPlatform;
+*///?} neoforge {
+import net.ray.quick_access.platform.neoforge.NeoforgePlatform;
+ //?} forge {
+/*import net.ray.quick_access.platform.forge.ForgePlatform;
  *///?}
 
 @SuppressWarnings("LoggingSimilarMessage")
@@ -41,26 +42,26 @@ public class ModInit {
 
 	private static Platform createPlatformInstance() {
 		//? fabric {
-		return new FabricPlatform();
-		//?} neoforge {
-		/*return new NeoforgePlatform();
-		 *///?} forge {
+		/*return new FabricPlatform();
+		*///?} neoforge {
+		return new NeoforgePlatform();
+		 //?} forge {
 		/*return new ForgePlatform();
 		 *///?}
 	}
 
 	private static Identifier id(String path) {
-		//? > 1.19.2 {
+		//? >=1.21 {
 		return Identifier.fromNamespaceAndPath(MOD_ID, path);
-		 //?} <= 1.19.2 {
+		 //?} < 1.21 {
 		/*return new Identifier(MOD_ID, path);
 		*///?}
 	}
 
 	private static Identifier id(String namespace, String path) {
-		//? > 1.19.2 {
+		//? >=1.21 {
 		return Identifier.fromNamespaceAndPath(namespace, path);
-		 //?} <= 1.19.2 {
+		//?} < 1.21 {
 		/*return new Identifier(namespace, path);
 		*///?}
 	}

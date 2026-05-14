@@ -28,10 +28,12 @@ val Project.sc: StonecutterBuildExtension
 @OptIn(StonecutterExperimentalAPI::class)
 fun Project.prop(name: String): String = (project.sc.properties.get<String>(name))
 
-fun Project.env(variable: String): String? = providers.environmentVariable(variable).orNull
 
+fun Project.env(variable: String): String? =
+	runCatching { project.extensions.getByName("env").let {
+		it.javaClass.getMethod("fetch", String::class.java).invoke(it, variable) as? String
+	}}.getOrNull() ?: providers.environmentVariable(variable).orNull
 fun Project.envTrue(variable: String): Boolean = env(variable)?.toDefaultLowerCase() == "true"
-
 fun RepositoryHandler.strictMaven(
 	url: String, vararg groups: String, configure: MavenArtifactRepository.() -> Unit = {}
 ) = exclusiveContent {

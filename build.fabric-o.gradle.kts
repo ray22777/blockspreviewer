@@ -24,12 +24,12 @@ platform {
 		}
 		required("fabric-api") {
 			slug("fabric-api")
-			fabricLikeVersionRange = ">=${prop("deps.fabric-api")}"
+			fabricLikeVersionRange = "*"
 		}
 		required("fabricloader") {
-			fabricLikeVersionRange = ">=${prop("deps.fabric-loader")}"
+			fabricLikeVersionRange = "*"
 		}
-		optional("modmenu") {}
+//		optional("modmenu") {}
 	}
 }
 
@@ -82,5 +82,5 @@ dependencies {
 	// implementation(libs.moulberry.mixinconstraints)
 	// include(libs.moulberry.mixinconstraints)
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
-	modLocalRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
+//	modLocalRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 }

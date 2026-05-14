@@ -15,7 +15,6 @@ plugins {
 }
 
 stonecutter active file(".sc_active_version")
-
 tasks.register("runActiveClient") {
 	group = "stonecutter"
 	description = "Run client of the active Stonecutter version"

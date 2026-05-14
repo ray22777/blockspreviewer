@@ -1,18 +1,18 @@
-package net.ray.fast_access.platform.neoforge;
+package net.ray.quick_access.platform.neoforge;
 
 //? neoforge {
 
-/*import net.ray.fast_access.ModTemplate;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.ray.quick_access.ModInit;
 
-@EventBusSubscriber(modid = ModTemplate.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = ModInit.MOD_ID, value = Dist.CLIENT)
 public class NeoforgeClientEventSubscriber {
 	@SubscribeEvent
 	public static void onClientSetup(final FMLClientSetupEvent event) {
-		ModTemplate.onInitializeClient();
+		ModInit.onInitializeClient();
 	}
 }
-*///?}
+//?}

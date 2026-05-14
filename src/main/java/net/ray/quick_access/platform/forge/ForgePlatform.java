@@ -1,4 +1,4 @@
-package net.ray.fast_access.platform.forge;
+package net.ray.quick_access.platform.forge;
 
 //? forge {
 

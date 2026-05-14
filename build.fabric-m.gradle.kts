@@ -27,9 +27,9 @@ platform {
 			fabricLikeVersionRange = "*"
 		}
 		required("fabricloader") {
-			fabricLikeVersionRange = ">=${prop("deps.fabric-loader")}"
+			fabricLikeVersionRange = "*"
 		}
-		optional("modmenu") {}
+//		optional("modmenu") {}
 	}
 }
 
@@ -71,5 +71,5 @@ dependencies {
 	// implementation(libs.moulberry.mixinconstraints)
 	// include(libs.moulberry.mixinconstraints)
 	implementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
-	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
+//	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 }
