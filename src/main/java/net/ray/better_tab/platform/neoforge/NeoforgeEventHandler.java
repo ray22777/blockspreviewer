@@ -2,7 +2,7 @@ package net.ray.better_tab.platform.neoforge;
 
 //? neoforge {
 
-/*import net.minecraft.resources.Identifier;
+/*import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
@@ -18,7 +18,7 @@ public class NeoforgeEventHandler {
 	@SubscribeEvent
 	public static void registerOverlays(RegisterGuiLayersEvent event) {
 		event.registerAboveAll(
-				Identifier.fromNamespaceAndPath("craftconfig", "singleplayer_tab"),
+				ResourceLocation.fromNamespaceAndPath("craftconfig", "singleplayer_tab"),
 				(guiGraphics, deltaTracker) -> SinglePlayerTab.renderTab(guiGraphics)
 		);
 	}

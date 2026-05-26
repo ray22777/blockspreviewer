@@ -17,6 +17,7 @@ import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
 import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
 import org.gradle.jvm.tasks.Jar
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.*
 import org.gradle.language.jvm.tasks.ProcessResources
 import org.gradle.plugins.ide.idea.model.IdeaModel
@@ -110,15 +111,24 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 		}
 	}
 
+//	private fun Project.configureJava(ctx: Context) {
+//		extensions.configure<JavaPluginExtension>("java") {
+//			withSourcesJar()
+//			withJavadocJar()
+//			sourceCompatibility = ctx.javaVersion
+//			targetCompatibility = ctx.javaVersion
+//		}
+//	}
 	private fun Project.configureJava(ctx: Context) {
 		extensions.configure<JavaPluginExtension>("java") {
 			withSourcesJar()
 			withJavadocJar()
-			sourceCompatibility = ctx.javaVersion
-			targetCompatibility = ctx.javaVersion
+			toolchain {
+				languageVersion.set(JavaLanguageVersion.of(ctx.javaVersion.majorVersion))
+			}
+			// sourceCompatibility/targetCompatibility are derived from toolchain automatically
 		}
 	}
-
 	private fun Project.registerGenerateManifestTask(ctx: Context) {
 		val manifestOutputDir = layout.buildDirectory.dir("generated/modManifest")
 		val generateTask = tasks.register<GenerateModManifestTask>("generateModManifest") {

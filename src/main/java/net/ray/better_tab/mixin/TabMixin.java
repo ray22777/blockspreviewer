@@ -2,7 +2,7 @@ package net.ray.better_tab.mixin;
 
 import net.minecraft.client.Minecraft;
 //~ if >=26.1 '.GuiGraphics' -> '.GuiGraphicsExtractor'
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.PlayerTabOverlay;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.network.chat.Component;
@@ -47,12 +47,12 @@ public class TabMixin {
 
 	@Inject(
 			//~ if >=26.1 'render' -> 'extractRenderState'
-			method = "extractRenderState",
+			method = "render",
 			at = @At("HEAD")
 	)
 	private void updateFooter(
 			//~ if >=26.1 'GuiGraphics' -> 'GuiGraphicsExtractor'
-			GuiGraphicsExtractor graphics,
+			GuiGraphics graphics,
 			int width,
 			Scoreboard scoreboard,
 			@Nullable Objective objective,
@@ -137,12 +137,12 @@ public class TabMixin {
 
 	@Inject(
 			//~ if >=26.1 'render' -> 'extractRenderState'
-			method = "extractRenderState",
+			method = "render",
 			at = @At("TAIL")
 	)
 	private void removeLastFooterLine(
 			//~ if >=26.1 'GuiGraphics' -> 'GuiGraphicsExtractor'
-			GuiGraphicsExtractor graphics,
+			GuiGraphics graphics,
 			int width,
 			Scoreboard scoreboard,
 			@Nullable Objective objective,
@@ -152,13 +152,13 @@ public class TabMixin {
 
 	@Inject(
 			//~ if >=26.1 'renderPingIcon' -> 'extractPingIcon'
-			method = "extractPingIcon",
+			method = "renderPingIcon",
 			at = @At("HEAD"),
 			cancellable = true
 	)
 	public void renderPingIcon(
 			//~ if >=26.1 'GuiGraphics' -> 'GuiGraphicsExtractor'
-			GuiGraphicsExtractor graphics,
+			GuiGraphics graphics,
 			int width,
 			int x,
 			int y,
@@ -214,16 +214,16 @@ public class TabMixin {
 		int slotHeight = 8;
 		float drawY = (y + (slotHeight / 2)) - ((textHeight * scale) / 2);
 		//~ if >=1.21.11 'pushPose' -> 'pushMatrix'
-		graphics.pose().pushMatrix();
+		graphics.pose().pushPose();
 		//?if>=1.21.11{
-		graphics.pose().translate(Math.round(drawX), Math.round(drawY));
+		/*graphics.pose().translate(Math.round(drawX), Math.round(drawY));
 		graphics.pose().scale(scale, scale);
-		//?}else{
-		/*graphics.pose().translate(Math.round(drawX), Math.round(drawY), 100.0F);
+		*///?}else{
+		graphics.pose().translate(Math.round(drawX), Math.round(drawY), 100.0F);
 		graphics.pose().scale(scale, scale, 1.0F);
-		*///?}
+		//?}
 		//~ if >=26.1 'drawString' -> 'text'
-		graphics.text(
+		graphics.drawString(
 				minecraft.font,
 				text,
 				0,
@@ -231,12 +231,12 @@ public class TabMixin {
 				-1
 		);
 		//~ if >=1.21.11 'popPose' -> 'popMatrix'
-		graphics.pose().popMatrix();
+		graphics.pose().popPose();
 		ci.cancel();
 	}
 
 	//~ if >=26.1 'render' -> 'extractRenderState'
-	@ModifyVariable(method = "extractRenderState", at = @At(value = "STORE", ordinal = 0), ordinal = 1)
+	@ModifyVariable(method = "render", at = @At(value = "STORE", ordinal = 0), ordinal = 1)
 	private int addPaddingToNameWidth(int k) {
 		if (Config.enableNumericalPing.get()) {
 			return k + Config.offset.get();
@@ -245,7 +245,7 @@ public class TabMixin {
 	}
 
 	//~ if >=26.1 'render' -> 'extractRenderState'
-	@ModifyVariable(method = "extractRenderState", at = @At(value = "STORE", ordinal = 1), ordinal = 2)
+	@ModifyVariable(method = "render", at = @At(value = "STORE", ordinal = 1), ordinal = 2)
 	private int addPaddingToScoreWidth(int l) {
 		if (Config.enableNumericalPing.get()) {
 			return l + Config.offset.get();

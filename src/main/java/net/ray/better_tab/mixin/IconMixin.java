@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(PlayerTabOverlay.class)
 public class IconMixin { //enable player icon rendering in offline mode servers
 	//~ if >=26.1 'render' -> 'extractRenderState'
-    @ModifyVariable(method = "extractRenderState", at = @At(value = "STORE"), ordinal = 0)
+    @ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 0)
     private boolean forceBlToTrue(boolean bl) {
         return true;
     }

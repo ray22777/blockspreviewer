@@ -23,6 +23,7 @@ platform {
 			forgeLikeVersionRange.set("[1,)")
 		}
 		required("craft_config"){
+			forgeLikeVersionRange.set("[1,)")
 			slug("craft-config")
 		}
 	}

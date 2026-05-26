@@ -3,7 +3,7 @@ package net.ray.better_tab;
 import net.ray.better_tab.config.Config;
 import net.ray.fast_access.platform.Platform;
 
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,20 +51,20 @@ public class ModInit {
 		 *///?}
 	}
 
-	private static Identifier id(String path) {
+	private static ResourceLocation id(String path) {
 		//? >=1.21 {
-		return Identifier.fromNamespaceAndPath(MOD_ID, path);
-		 //?} < 1.21 {
-		/*return new Identifier(MOD_ID, path);
-		*///?}
+		/*return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+		 *///?} < 1.21 {
+		return new ResourceLocation(MOD_ID, path);
+		//?}
 	}
 
-	private static Identifier id(String namespace, String path) {
+	private static ResourceLocation id(String namespace, String path) {
 		//? >=1.21 {
-		return Identifier.fromNamespaceAndPath(namespace, path);
-		//?} < 1.21 {
-		/*return new Identifier(namespace, path);
-		*///?}
+		/*return ResourceLocation.fromNamespaceAndPath(namespace, path);
+		*///?} < 1.21 {
+		return new ResourceLocation(namespace, path);
+		//?}
 	}
 
 

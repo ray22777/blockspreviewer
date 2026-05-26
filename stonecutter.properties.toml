@@ -1,7 +1,7 @@
 mod.id = "better_tab"
 mod.name = "Better Tab"
 mod.group = "net.ray"
-mod.version = "2.1.1"
+mod.version = "2.1.2"
 mod.channel_tag = ""
 mod.description = "Improves tab(player list) and adds extra client-sided information, such as TPS and numerical ping. Now fully customizable!"
 mod.authors = ["ray"]
@@ -33,7 +33,7 @@ deps.modmenu = "7.2.2"
 [fabric."1.21.1"]
 deps.minecraft = "1.21.1"
 deps.fabric-api = "0.116.7+1.21.1"
-deps.modmenu = "14.0.0-rc.2"
+deps.modmenu = "11.0.4"
 
 [fabric."1.21.11"]
 deps.minecraft = "1.21.11"

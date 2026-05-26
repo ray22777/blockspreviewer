@@ -41,7 +41,7 @@ public class TabTpsMixin {
 
     private void updateFromServer(MinecraftServer server) {
 		//~ if >=1.21 '.getAverageTickTime()' -> '.getCurrentSmoothedTickTime()'
-        float mspt = server.getCurrentSmoothedTickTime();
+        float mspt = server.getAverageTickTime();
         if (mspt > 0 && mspt < 1000) {
             serverMspt = mspt;
             float tps = 1000.0f / mspt;
