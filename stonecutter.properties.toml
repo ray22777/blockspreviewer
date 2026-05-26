@@ -1,57 +1,60 @@
-mod.id = "quick_access"
-mod.name = "Quick Access"
+mod.id = "better_tab"
+mod.name = "Better Tab"
 mod.group = "net.ray"
-mod.version = "1.0.0"
+mod.version = "2.1.1"
 mod.channel_tag = ""
-mod.description = "Easily access crafting tables, enderchests, shulkers, etc... just by right clicking in your inventory."
+mod.description = "Improves tab(player list) and adds extra client-sided information, such as TPS and numerical ping. Now fully customizable!"
 mod.authors = ["ray"]
 mod.contributors = []
 mod.inception_year = "2026"
 mod.license.name = "MIT"
 mod.license.url = "https://opensource.org/licenses/MIT"
 mod.license.dist = "repo"
-mod.sources_url = "https://github.com/ray22777/quick-access"
-mod.homepage_url = "https://github.com/ray22777/quick-access"
-mod.issues_url = "https://github.com/ray22777/quick-access/issues"
+mod.sources_url = "https://github.com/ray22777/better-tab"
+mod.homepage_url = "https://github.com/ray22777/better-tab"
+mod.issues_url = "https://github.com/ray22777/better-tab/issues"
 mod.discord_url = ""
 [[mod.pom.developers]]
 id = "ray"
 name = "ray"
 url = "https://github.com/ghost"
 
+
+
 [fabric]
 deps.fabric-loader = "0.19.2"
+deps.craft-config = "1.0.5"
 
 [fabric."1.20.1"]
 deps.minecraft = "1.20.1"
 deps.fabric-api = "0.92.9+1.20.1"
-#deps.modmenu = "4.2.0-beta.2"
+deps.modmenu = "7.2.2"
 
 [fabric."1.21.1"]
 deps.minecraft = "1.21.1"
 deps.fabric-api = "0.116.7+1.21.1"
-#deps.modmenu = "15.0.0"
+deps.modmenu = "14.0.0-rc.2"
 
 [fabric."1.21.11"]
 deps.minecraft = "1.21.11"
 deps.fabric-api = "0.141.4+1.21.11"
-#deps.modmenu = "15.0.0"
+deps.modmenu = "17.0.0"
 
 
 [fabric."26.1"]
 deps.minecraft = "26.1"
 deps.fabric-api = "0.145.1+26.1"
-#deps.modmenu = "18.0.0-alpha.8"
+deps.modmenu = "18.0.0-beta.1"
 publish.additionalVersions = ["26.1.1", "26.1.2"]
 
 [forge]
-
+deps.craft-config = "1.0.5"
 [forge."1.20.1"]
 deps.minecraft = "1.20.1"
-deps.forge = "47.4.20"
+deps.forge = "47.4.18"
 
 [neoforge]
-
+deps.craft-config = "1.0.5"
 [neoforge."1.21.1"]
 deps.minecraft = "1.21.1"
 deps.neoforge = "21.1.213"

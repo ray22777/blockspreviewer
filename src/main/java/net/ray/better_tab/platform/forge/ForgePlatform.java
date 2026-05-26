@@ -1,4 +1,4 @@
-package net.ray.quick_access.platform.forge;
+package net.ray.better_tab.platform.forge;
 
 //? forge {
 

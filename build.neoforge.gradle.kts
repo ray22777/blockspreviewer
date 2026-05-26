@@ -22,6 +22,9 @@ platform {
 		required("neoforge") {
 			forgeLikeVersionRange.set("[1,)")
 		}
+		required("craft_config"){
+			slug("craft-config")
+		}
 	}
 }
 
@@ -61,9 +64,11 @@ neoForge {
 repositories {
 	mavenCentral()
 	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
+
 }
 
 dependencies {
+	implementation("maven.modrinth:craft-config:${prop("deps.craft-config")}+${prop("deps.minecraft")}-neoforge")
 	// implementation(libs.moulberry.mixinconstraints)
 	// jarJar(libs.moulberry.mixinconstraints)
 }

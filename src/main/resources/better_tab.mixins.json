@@ -1,11 +1,12 @@
 {
-  "package": "net.ray.quick_access.mixin",
+  "package": "net.ray.better_tab.mixin",
   "required": true,
   "minVersion": "0.8",
   "compatibilityLevel": "${java}",
   "injectors": {
     "defaultRequire": 1
   },
-  "mixins": ["ServerPacketMixin"],
-  "client": []
+  "mixins": [],
+  "client": [
+  ]
 }

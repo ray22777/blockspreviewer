@@ -2,7 +2,7 @@ package net.ray.fast_access.platform.fabric;
 
 //? fabric {
 
-/*import net.ray.fast_access.platform.Platform;
+import net.ray.fast_access.platform.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatform implements Platform {
@@ -27,4 +27,4 @@ public class FabricPlatform implements Platform {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
 }
-*///?}
+//?}

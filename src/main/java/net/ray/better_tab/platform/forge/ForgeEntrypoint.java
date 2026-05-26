@@ -1,12 +1,11 @@
-package net.ray.quick_access.platform.forge;
+package net.ray.better_tab.platform.forge;
 
 //? forge {
 
 /*import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.ray.quick_access.EventHandler;
-import net.ray.quick_access.ModInit;
+import net.ray.better_tab.ModInit;
 
 @Mod(ModInit.MOD_ID)
 public class ForgeEntrypoint {

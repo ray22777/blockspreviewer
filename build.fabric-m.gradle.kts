@@ -29,7 +29,10 @@ platform {
 		required("fabricloader") {
 			fabricLikeVersionRange = "*"
 		}
-//		optional("modmenu") {}
+		required("craft_config"){
+			slug("craft-config")
+		}
+		optional("modmenu") {}
 	}
 }
 
@@ -68,8 +71,9 @@ repositories {
 dependencies {
 	minecraft("com.mojang:minecraft:${prop("deps.minecraft")}")
 	implementation("net.fabricmc:fabric-loader:${prop("deps.fabric-loader")}")
+	implementation("maven.modrinth:craft-config:${prop("deps.craft-config")}+${prop("deps.minecraft")}-fabric")
 	// implementation(libs.moulberry.mixinconstraints)
 	// include(libs.moulberry.mixinconstraints)
 	implementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
-//	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
+	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 }

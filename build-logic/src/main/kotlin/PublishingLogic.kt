@@ -79,7 +79,6 @@ fun Project.configureModPublishing(ctx: Context) {
 		version = ctx.fullVersion
 		changelog.set(rootProject.file("CHANGELOG.md").readText())
 		modLoaders.add(ctx.loader.id)
-
 		displayName =
 			"${ctx.modName} ${ctx.basicVersion} ${ctx.loader.id.replaceFirstChar(Char::titlecase)} ${ctx.currentMcVersion}"
 

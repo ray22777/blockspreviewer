@@ -29,7 +29,10 @@ platform {
 		required("fabricloader") {
 			fabricLikeVersionRange = "*"
 		}
-//		optional("modmenu") {}
+		required("craft_config"){
+			slug("craft-config")
+		}
+		optional("modmenu") {}
 	}
 }
 
@@ -79,8 +82,9 @@ dependencies {
 			if (hasProperty("deps.parchment")) parchment("org.parchmentmc.data:parchment-${prop("deps.parchment")}@zip")
 		})
 	modImplementation("net.fabricmc:fabric-loader:${prop("deps.fabric-loader")}")
+	modImplementation("maven.modrinth:craft-config:${prop("deps.craft-config")}+${prop("deps.minecraft")}-fabric")
 	// implementation(libs.moulberry.mixinconstraints)
 	// include(libs.moulberry.mixinconstraints)
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
-//	modLocalRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
+	modLocalRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 }

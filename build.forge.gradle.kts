@@ -22,6 +22,9 @@ platform {
 		required("forge") {
 			forgeLikeVersionRange.set("[1,)")
 		}
+		required("craft_config"){
+			slug("craft-config")
+		}
 	}
 }
 
@@ -68,8 +71,9 @@ repositories {
 
 dependencies {
 	annotationProcessor("org.spongepowered:mixin:${libs.versions.mixin.get()}:processor")
-
+	modImplementation("maven.modrinth:craft-config:${prop("deps.craft-config")}+${prop("deps.minecraft")}-forge")
 	// implementation(libs.moulberry.mixinconstraints)
+
 	// jarJar(libs.moulberry.mixinconstraints)
 }
 
