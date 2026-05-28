@@ -1,6 +1,6 @@
 # Blocks Previewer
 ### Preview blocks before placing!
-![showcase1](https://raw.githubusercontent.com/ray22777/blockspreviewer/refs/heads/master/showcase1.webp)
+![showcase1](https://raw.githubusercontent.com/tricube3/blockspreviewer/refs/heads/master/showcase1.webp)
 
 Ever placed a stair or piston the wrong way and had to break it again? Blocks Previewer lets you see how a block will be oriented before it’s placed, saving your time and frustration, especially useful for builders and redstoners.
 
@@ -25,7 +25,7 @@ To open config for the mod, use the command `/blockspreviewer` or by using Mod M
 ## Showcase
 **TRANSPARENT mode**
 
-![showcase2](https://raw.githubusercontent.com/ray22777/blockspreviewer/refs/heads/master/showcase2.webp)
+![showcase2](https://raw.githubusercontent.com/tricube3/blockspreviewer/refs/heads/master/showcase2.webp)
 
 **OUTLINE mode**
 
@@ -35,15 +35,15 @@ To open config for the mod, use the command `/blockspreviewer` or by using Mod M
 
 ![config](https://cdn.modrinth.com/data/cached_images/1c225fe1110188ed43c3ff2090745af87b1846dc.png)
 
-## Dependencies (For versions >= 2.0.0)
+## Dependencies (For versions >= 2.1.0)
 
 ### Fabric Dependencies
 
-Mod Menu is optional.All else is required.
+Mod Menu is optional. All else is required.
 
-| Modrinth     |Curseforge   |
-| ------------ |------------ |
-| <a href="https://modrinth.com/mod/cloth-config" target="_blank" rel="nofollow">Cloth Config</a> |<a href="https://www.curseforge.com/minecraft/mc-mods/cloth-config" target="_blank" rel="nofollow">Cloth Config</a> |
-| <a href="https://modrinth.com/mod/fabric-api" target="_blank" rel="nofollow">Fabric API</a> |<a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api" target="_blank" rel="nofollow">Fabric API</a> |
-| <a href="https://modrinth.com/mod/modmenu" target="_blank" rel="nofollow">Mod Menu</a> |<a href="https://www.curseforge.com/minecraft/mc-mods/modmenu" target="_blank" rel="nofollow">Mod Menu</a> |
+| Modrinth                                                                                            | Curseforge                                                                                                              |
+|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| <a href="https://modrinth.com/mod/craft-config" target="_blank" rel="nofollow">Craft Config Lib</a> | <a href="https://www.curseforge.com/minecraft/mc-mods/craft-config" target="_blank" rel="nofollow">Craft Config Lib</a> |
+| <a href="https://modrinth.com/mod/fabric-api" target="_blank" rel="nofollow">Fabric API</a>         | <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api" target="_blank" rel="nofollow">Fabric API</a>         |
+| <a href="https://modrinth.com/mod/modmenu" target="_blank" rel="nofollow">Mod Menu</a>              | <a href="https://www.curseforge.com/minecraft/mc-mods/modmenu" target="_blank" rel="nofollow">Mod Menu</a>              |
 
