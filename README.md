@@ -20,8 +20,7 @@ To open config for the mod, use the command `/blockspreviewer` or by using Mod M
     - All blocks
     - Only directional blocks (stairs, pistons, observers, etc.)
 
-
-
+  
 ## Showcase
 **TRANSPARENT mode**
 
