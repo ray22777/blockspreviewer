@@ -1,9 +1,9 @@
-package net.ray.fast_access.platform.fabric;
+package net.ray.blocks_previewer.platform.fabric;
 
 //? fabric {
 
-import net.ray.fast_access.platform.Platform;
 import net.fabricmc.loader.api.FabricLoader;
+import net.ray.CraftConfig.platform.Platform;
 
 public class FabricPlatform implements Platform {
 

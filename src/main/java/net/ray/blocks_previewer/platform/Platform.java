@@ -1,4 +1,4 @@
-package net.ray.fast_access.platform;
+package net.ray.blocks_previewer.platform;
 
 public interface Platform {
 	boolean isModLoaded(String modId);

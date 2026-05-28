@@ -1,12 +1,12 @@
-package net.ray.better_tab.platform.neoforge;
+package net.ray.blocks_previewer.platform.forge;
 
-//? neoforge {
+//? forge {
 
 /*import net.ray.fast_access.platform.Platform;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLLoader;
 
-public class NeoforgePlatform implements Platform {
+public class ForgePlatform implements Platform {
 
 	@Override
 	public boolean isModLoaded(String modId) {
@@ -15,7 +15,7 @@ public class NeoforgePlatform implements Platform {
 
 	@Override
 	public ModLoader loader() {
-		return ModLoader.NEOFORGE;
+		return ModLoader.FORGE;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class NeoforgePlatform implements Platform {
 
 	@Override
 	public boolean isDevelopmentEnvironment() {
-		return !FMLLoader/^? if > 1.21.7 {^//^.getCurrent()^//^?}^/.isProduction();
+		return !FMLLoader.isProduction();
 	}
 }
 *///?}

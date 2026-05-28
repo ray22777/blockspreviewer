@@ -1,5 +1,5 @@
 {
-  "package": "net.ray.better_tab.mixin",
+  "package": "net.ray.blocks_previewer.mixin",
   "required": true,
   "refmap": "better_tab.mixins.refmap.json",
   "minVersion": "0.8",
@@ -8,7 +8,7 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "mixins": ["IconMixin","TabMixin","TabTpsMixin"],
+  "mixins": [],
   "client": [
   ]
 }

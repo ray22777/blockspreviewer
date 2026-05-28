@@ -21,6 +21,7 @@ class Context(
 		stonecutter.current.version
 	}
 
+
 	val modId: String by lazy { require("mod.id") }
 	val modName: String by lazy { require("mod.name") }
 	val modGroup: String by lazy { require("mod.group") }

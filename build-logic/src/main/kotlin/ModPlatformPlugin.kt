@@ -4,6 +4,7 @@ import dev.kikugie.fletching_table.extension.FletchingTableExtension
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 import dev.kikugie.stonecutter.build.StonecutterBuildExtension
 import org.gradle.api.DefaultTask
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -89,7 +90,6 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 
 		version = ctx.fullVersion
 		ctx.extension.requiredJava.set(ctx.javaVersion)
-
 		if (ctx.loader.isFabricLike) {
 			ctx.extension.dependencies {
 				required("java") { fabricLikeVersionRange = ">=${ctx.javaVersion.majorVersion}" }

@@ -31,6 +31,7 @@ platform {
 		}
 		required("craft_config"){
 			slug("craft-config")
+			fabricLikeVersionRange = "*"
 		}
 		optional("modmenu") {}
 	}

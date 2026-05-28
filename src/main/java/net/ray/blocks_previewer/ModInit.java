@@ -1,25 +1,24 @@
-package net.ray.better_tab;
+package net.ray.blocks_previewer;
 
-import net.ray.better_tab.config.Config;
-import net.ray.fast_access.platform.Platform;
-
-import net.minecraft.resources.ResourceLocation;
+import net.ray.CraftConfig.platform.Platform;
+import net.ray.blocks_previewer.config.Config;
+import net.minecraft.resources.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //? fabric {
-import net.ray.fast_access.platform.fabric.FabricPlatform;
+import net.ray.blocks_previewer.platform.fabric.FabricPlatform;
 //?} neoforge {
-/*import net.ray.better_tab.platform.neoforge.NeoforgePlatform;
+/*import net.ray.blocks_previewer.platform.neoforge.NeoforgePlatform;
  *///?} forge {
-/*import net.ray.better_tab.platform.forge.ForgePlatform;
+/*import net.ray.blocks_previewer.platform.forge.ForgePlatform;
  *///?}
 
 @SuppressWarnings("LoggingSimilarMessage")
 public class ModInit {
 
-	public static final String MOD_ID = /*$ mod_id*/ "better_tab";
+	public static final String MOD_ID = /*$ mod_id*/ "blocks_previewer";
 //	public static final String MOD_VERSION = /*$ mod_version*/ "0.1.0";
 //	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Mod Template";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -51,20 +50,20 @@ public class ModInit {
 		 *///?}
 	}
 
-	private static ResourceLocation id(String path) {
+	private static Identifier id(String path) {
 		//? >=1.21 {
-		/*return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
-		 *///?} < 1.21 {
-		return new ResourceLocation(MOD_ID, path);
-		//?}
+		return Identifier.fromNamespaceAndPath(MOD_ID, path);
+		 //?} < 1.21 {
+		/*return new Identifier(MOD_ID, path);
+		*///?}
 	}
 
-	private static ResourceLocation id(String namespace, String path) {
+	private static Identifier id(String namespace, String path) {
 		//? >=1.21 {
-		/*return ResourceLocation.fromNamespaceAndPath(namespace, path);
-		*///?} < 1.21 {
-		return new ResourceLocation(namespace, path);
-		//?}
+		return Identifier.fromNamespaceAndPath(namespace, path);
+		//?} < 1.21 {
+		/*return new Identifier(namespace, path);
+		*///?}
 	}
 
 

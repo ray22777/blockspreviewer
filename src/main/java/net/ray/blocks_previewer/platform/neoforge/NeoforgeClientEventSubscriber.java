@@ -1,4 +1,4 @@
-package net.ray.better_tab.platform.neoforge;
+package net.ray.blocks_previewer.platform.neoforge;
 
 //? neoforge {
 
@@ -6,7 +6,7 @@ package net.ray.better_tab.platform.neoforge;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.ray.better_tab.ModInit;
+import net.ray.blocks_previewer.ModInit;
 
 @EventBusSubscriber(modid = ModInit.MOD_ID, value = Dist.CLIENT)
 public class NeoforgeClientEventSubscriber {

@@ -1,29 +1,27 @@
-mod.id = "better_tab"
-mod.name = "Better Tab"
+mod.id = "blocks_previewer"
+mod.name = "Blocks Previewer"
 mod.group = "net.ray"
-mod.version = "2.1.2"
+mod.version = "2.1.0"
 mod.channel_tag = ""
-mod.description = "Improves tab(player list) and adds extra client-sided information, such as TPS and numerical ping. Now fully customizable!"
+mod.description = "Client-side mod to preview how blocks will be orientated when placed!"
 mod.authors = ["ray"]
 mod.contributors = []
 mod.inception_year = "2026"
 mod.license.name = "MIT"
 mod.license.url = "https://opensource.org/licenses/MIT"
 mod.license.dist = "repo"
-mod.sources_url = "https://github.com/ray22777/better-tab"
-mod.homepage_url = "https://github.com/ray22777/better-tab"
-mod.issues_url = "https://github.com/ray22777/better-tab/issues"
+mod.sources_url = "https://github.com/ray22777/blockspreviewer"
+mod.homepage_url = "https://github.com/ray22777/blockspreviewer"
+mod.issues_url = "https://github.com/ray22777/blockspreviewer/issues"
 mod.discord_url = ""
 [[mod.pom.developers]]
 id = "ray"
 name = "ray"
 url = "https://github.com/ghost"
 
-
-
 [fabric]
 deps.fabric-loader = "0.19.2"
-deps.craft-config = "1.0.5"
+deps.craft-config = "1.1.2"
 
 [fabric."1.20.1"]
 deps.minecraft = "1.20.1"
@@ -36,6 +34,7 @@ deps.fabric-api = "0.116.7+1.21.1"
 deps.modmenu = "11.0.4"
 
 [fabric."1.21.11"]
+deps.craft-config = "1.1.1"
 deps.minecraft = "1.21.11"
 deps.fabric-api = "0.141.4+1.21.11"
 deps.modmenu = "17.0.0"
@@ -48,13 +47,15 @@ deps.modmenu = "18.0.0-beta.1"
 publish.additionalVersions = ["26.1.1", "26.1.2"]
 
 [forge]
-deps.craft-config = "1.0.5"
+deps.craft-config = "1.1.0"
+
 [forge."1.20.1"]
 deps.minecraft = "1.20.1"
 deps.forge = "47.4.18"
 
 [neoforge]
-deps.craft-config = "1.0.5"
+deps.craft-config = "1.1.0"
+
 [neoforge."1.21.1"]
 deps.minecraft = "1.21.1"
 deps.neoforge = "21.1.213"

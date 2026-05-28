@@ -1,30 +1,39 @@
-# Better Tab Info
+# Blocks Previewer
+### Preview blocks before placing!
+![showcase1](https://raw.githubusercontent.com/ray22777/blockspreviewer/refs/heads/master/showcase1.webp)
 
+Ever placed a stair or piston the wrong way and had to break it again? Blocks Previewer lets you see how a block will be oriented before it’s placed, saving your time and frustration, especially useful for builders and redstoners.
 
+This is a purely client-sided mod, and does not interact the server. Works similarly to Create’s placement preview, but for any block in Minecraft.
 
-![top banner](https://cdn.modrinth.com/data/cached_images/2e55d1fc8ca262e3507c72cc66534eb0d342272d.png)
-
-
-A client-sided Fabric/Forge mod to improve the minecraft server tab list by showing the ping value and TPS which is useful to observe server performance without the use of server-sided mods. Also adds addtional improvements to the tab list. Now highly customizable with configs!
-
-To open config for the mod, use the command /bettertab or by using Mod Menu for Fabric or the built in (neo)Forge config menu.
+To open config for the mod, use the command `/blockspreviewer` or by using Mod Menu for Fabric or the built in (neo)Forge config menu.
 
 ## Features
+- **Controls**
+  - Press **G** to toggle preview
+  - Hold **H** for a momentary preview
 
-- **Default ping icon is replaced with a numerical one**
-- **Enables the use of tablist in singleplayer worlds**
-- **Readds player heads beside player names in offline servers, just like how it works in online servers**
-- **Fully customizable config**
-- **Colored TPS and Ping is shown in the tablist (see below)**
+  _(Both keys are fully configurable in the controls menu.)_
+- **Block filtering**
 
-![PING](https://cdn.modrinth.com/data/cached_images/11b3ab026cc260d51c7f75abe77900bf336a7cd8.png)
-
+  - Use **J** to switch between previewing:
+    - All blocks
+    - Only directional blocks (stairs, pistons, observers, etc.)
 
 
-_note: this mod is a client-sided mod and thus requires the use of packets to estimate tps, which can be unreliable if the server messes with certain packets, but it should generally be accurate enough for vanilla servers. bad connection could also result in the inaccurate estimation of tps_
 
-## Config
-![Replace this with a description](https://cdn.modrinth.com/data/cached_images/659e7e80256d381ab4ce10fcc7c834e9b6ea731d_0.webp)
+## Showcase
+**TRANSPARENT mode**
+
+![showcase2](https://raw.githubusercontent.com/ray22777/blockspreviewer/refs/heads/master/showcase2.webp)
+
+**OUTLINE mode**
+
+![outline](https://cdn.modrinth.com/data/cached_images/5be02ed4c156f12a8ac41fd9fabf22d5746b8f73.png)
+
+**CONFIGS**
+
+![config](https://cdn.modrinth.com/data/cached_images/1c225fe1110188ed43c3ff2090745af87b1846dc.png)
 
 ## Dependencies (For versions >= 2.0.0)
 
@@ -38,8 +47,3 @@ Mod Menu is optional.All else is required.
 | <a href="https://modrinth.com/mod/fabric-api" target="_blank" rel="nofollow">Fabric API</a> |<a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api" target="_blank" rel="nofollow">Fabric API</a> |
 | <a href="https://modrinth.com/mod/modmenu" target="_blank" rel="nofollow">Mod Menu</a> |<a href="https://www.curseforge.com/minecraft/mc-mods/modmenu" target="_blank" rel="nofollow">Mod Menu</a> |
 
-### (Neo)Forge Dependencies
-
-| Modrinth     |Curseforge   |
-| ------------ |------------ |
-| <a href="https://modrinth.com/mod/cloth-config" target="_blank" rel="nofollow">Cloth Config</a> |<a href="https://www.curseforge.com/minecraft/mc-mods/cloth-config" target="_blank" rel="nofollow">Cloth Config</a> |
