@@ -21,6 +21,7 @@ To open config for the mod, use the command `/blockspreviewer` or by using Mod M
     - Only directional blocks (stairs, pistons, observers, etc.)
 
 
+
 ## Showcase
 **TRANSPARENT mode**
 
@@ -32,7 +33,7 @@ To open config for the mod, use the command `/blockspreviewer` or by using Mod M
 
 **CONFIGS**
 
-![config](https://cdn.modrinth.com/data/cached_images/1c225fe1110188ed43c3ff2090745af87b1846dc.png)
+![config](https://cdn.modrinth.com/data/cached_images/b53de46462bc533b85ac636b799e283cc77e2ab6_0.webp)
 
 ## Dependencies (For versions >= 2.1.0)
 

@@ -1,5 +1,5 @@
 {
-  "package": "net.ray.blocks_previewer.mixin",
+  "package": "net.tricube.blocks_previewer.mixin",
   "required": true,
   "refmap": "better_tab.mixins.refmap.json",
   "minVersion": "0.8",
@@ -10,5 +10,6 @@
   },
   "mixins": [],
   "client": [
+    "BlockOutlineMixin"
   ]
 }

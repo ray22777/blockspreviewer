@@ -1,6 +1,5 @@
-package net.ray.blocks_previewer.preview;
+package net.tricube.blocks_previewer.preview;
 
-import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 //?if >=26.1{
@@ -12,7 +11,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
@@ -23,7 +21,8 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.ray.blocks_previewer.config.Config;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.tricube.blocks_previewer.config.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,7 @@ public class PreviewHandler {
     private static List<BlockPos> lastPreviewPositions = new ArrayList<>();
     private static InteractionHand lastUsedHand = InteractionHand.MAIN_HAND;
     public static boolean previewShowing = false;
+	public static boolean isObstructed = false;
     public static void onRenderWorld(PoseStack poseStack
 			//?if >=26.1
 			 //,SubmitNodeCollector submitNodeCollector
@@ -42,7 +42,8 @@ public class PreviewHandler {
         if (mc.player == null || mc.level == null) return;
         if (lastPreviewStates.isEmpty()) return;
         var camera = mc.gameRenderer.getMainCamera();
-        Vec3 cameraPos = camera.position();
+		//~ if >=1.21.11 '.getPosition()' -> '.position()'
+        Vec3 cameraPos = camera.getPosition();
 
         for (int i = 0; i < lastPreviewStates.size(); i++) {
             BlockState state = lastPreviewStates.get(i);
@@ -66,11 +67,11 @@ public class PreviewHandler {
             poseStack.popPose();
         }
     }
-
     public static void updatePreviewPosition() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.level == null) {
             clearPreview();
+			previewShowing = false;
             return;
         }
 
@@ -80,18 +81,21 @@ public class PreviewHandler {
 
         if (previewItem.isEmpty()) {
             clearPreview();
+			previewShowing = false;
             return;
         }
 
         HitResult hitResult = mc.hitResult;
         if (hitResult == null || hitResult.getType() != HitResult.Type.BLOCK) {
             clearPreview();
+			previewShowing = false;
             return;
         }
 
         BlockHitResult blockHit = (BlockHitResult) hitResult;
         if (!(previewItem.getItem() instanceof BlockItem blockItem)) {
             clearPreview();
+			previewShowing = false;
             return;
         }
 
@@ -105,6 +109,7 @@ public class PreviewHandler {
 		placeContext = blockItem.updatePlacementContext(placeContext);
 		if (placeContext == null || !placeContext.canPlace()) {
 			clearPreview();
+			previewShowing = false;
 			return;
 		}
 
@@ -113,47 +118,32 @@ public class PreviewHandler {
 		BlockState previewState = blockItem.getBlock().getStateForPlacement(placeContext);
 		if (previewState == null) {
 			clearPreview();
+			previewShowing = false;
 			return;
 		}
 
-		if (!previewState.canSurvive(mc.level, placementPos)) {
+		if (!previewState.canSurvive(mc.level, placementPos) ) {
 			clearPreview();
+			previewShowing = false;
 			return;
 		}
+		//~ if >=1.21.11 '.of' -> '.placementContext'
+		if(!mc.level.isUnobstructed(previewState, placementPos, CollisionContext.of(mc.player))){
+			isObstructed = true;
+		}
+		else{
+			isObstructed = false;
+		} //maybe implement a red tint when obstructed
 
 		updatePreviewData(placementPos, previewState, blockItem.getBlock(), mc, placeContext);
     }
 
-    private static boolean canPlaceBlock(Level level, BlockPos pos, BlockState state,
-                                         Block block, BlockPlaceContext context) {
-        if (!level.getBlockState(pos).canBeReplaced()) {
-            return false;
-        }
-
-        if (block instanceof DoorBlock || block instanceof DoublePlantBlock) {
-            BlockPos upperPos = pos.above();
-            if (!level.getBlockState(upperPos).canBeReplaced()) {
-                return false;
-            }
-            return state.canSurvive(level, pos);
-        }
-
-        if (block instanceof BedBlock) {
-            BlockPos headPos = pos.relative(context.getHorizontalDirection());
-            if (!level.getBlockState(headPos).canBeReplaced()) {
-                return false;
-            }
-            return state.canSurvive(level, pos) && state.canSurvive(level, headPos);
-        }
-
-        return state.canSurvive(level, pos);
-    }
     private static ItemStack getPreviewItemFromHands(ItemStack mainHand, ItemStack offHand) {
-        if (PreviewKeybindManager.shouldShowPreview(mainHand)) {
+        if (PreviewManager.shouldShowPreview(mainHand)) {
             lastUsedHand = InteractionHand.MAIN_HAND;
             previewShowing = true;
             return mainHand;
-        } else if (PreviewKeybindManager.shouldShowPreview(offHand)) {
+        } else if (PreviewManager.shouldShowPreview(offHand)) {
             lastUsedHand = InteractionHand.OFF_HAND;
             previewShowing = true;
             return offHand;

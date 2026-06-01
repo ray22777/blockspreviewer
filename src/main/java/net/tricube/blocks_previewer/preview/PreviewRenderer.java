@@ -1,16 +1,19 @@
-package net.ray.blocks_previewer.preview;
+package net.tricube.blocks_previewer.preview;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.client.Minecraft;
 
 import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.ShapeRenderer;
 
-
+//?if >=1.21.11{
+/*import net.minecraft.client.renderer.ShapeRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
+*///?}else{
+import net.minecraft.client.renderer.RenderType;
+//?}
+
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
 import net.minecraft.core.BlockPos;
@@ -19,7 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.ray.blocks_previewer.config.Config;
+import net.tricube.blocks_previewer.config.Config;
 
 //?if >=26.1{
 /*import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -97,10 +100,12 @@ public class PreviewRenderer {
 
 		if (state == null || mc.level == null) return;
 		int light = LevelRenderer.getLightColor(mc.level, pos);
-
-		VertexConsumer originalConsumer = mc.renderBuffers().bufferSource().getBuffer(RenderTypes.translucentMovingBlock());
+		//~ if >=1.21.11 'RenderType' -> 'RenderTypes'
+		VertexConsumer originalConsumer = mc.renderBuffers().bufferSource().getBuffer(RenderType.translucentMovingBlock());
 		VertexConsumer alphaConsumer = createAlphaVertexConsumer(originalConsumer,alpha);
-
+		int overlay = PreviewHandler.isObstructed
+				? OverlayTexture.pack(OverlayTexture.u(1.0f), true)  // "hurt" red flash
+				: OverlayTexture.NO_OVERLAY;
 		poseStack.pushPose();
 		try {
 
@@ -109,14 +114,14 @@ public class PreviewRenderer {
 					poseStack,
 					renderType -> alphaConsumer,
 					light,
-					OverlayTexture.NO_OVERLAY
+					overlay
 			);
 
 		} finally {
 			poseStack.popPose();
 		}
-
-		mc.renderBuffers().bufferSource().endBatch(RenderTypes.translucentMovingBlock());
+		//~ if >=1.21.11 'RenderType' -> 'RenderTypes'
+		mc.renderBuffers().bufferSource().endBatch(RenderType.translucentMovingBlock());
 	}
 	//?}
 
@@ -153,15 +158,31 @@ public class PreviewRenderer {
 
 			finalColor = (alpha << 24) | (r << 16) | (g << 8) | b;
         }
-        VertexConsumer vertexConsumer = mc.renderBuffers().bufferSource().getBuffer(RenderTypes.SECONDARY_BLOCK_OUTLINE);
-        ShapeRenderer.renderShape(
-                poseStack,
-                vertexConsumer,
-                shape,
-                0, 0, 0,
+		//?if>= 1.21.11{
+		/*VertexConsumer vertexConsumer = mc.renderBuffers().bufferSource().getBuffer(RenderTypes.SECONDARY_BLOCK_OUTLINE);
+		ShapeRenderer.renderShape(
+				poseStack,
+				vertexConsumer,
+				shape,
+				0, 0, 0,
 				finalColor,
-                mc.getWindow().getAppropriateLineWidth()
-        );
+				mc.getWindow().getAppropriateLineWidth()
+		);
+		*///?}else{
+		float r = ((finalColor >> 16) & 0xFF) / 255f;
+		float g = ((finalColor >> 8)  & 0xFF) / 255f;
+		float b = ((finalColor)       & 0xFF) / 255f;
+		float a = ((finalColor >> 24) & 0xFF) / 255f;
+		VertexConsumer vertexConsumer = mc.renderBuffers().bufferSource().getBuffer(RenderType.lines());
+		LevelRenderer.renderVoxelShape(
+				poseStack, vertexConsumer, shape,
+				0, 0, 0,
+				r, g, b, a,
+				false
+		);
+
+		//?}
+
     }
 
     private static VertexConsumer createAlphaVertexConsumer(VertexConsumer original, float alphaMultiplier) {
@@ -188,7 +209,6 @@ public class PreviewRenderer {
                 int r = (color >> 16) & 0xFF;
                 int g = (color >> 8) & 0xFF;
                 int b = color & 0xFF;
-
                 int newAlpha = Math.max(0, Math.min(255, (int)(a * alphaMultiplier)));
                 int newColor = (newAlpha << 24) | (r << 16) | (g << 8) | b;
                 return original.setColor(newColor);
@@ -224,11 +244,14 @@ public class PreviewRenderer {
             public VertexConsumer setNormal(float x, float y, float z) {
                 return original.setNormal(x, y, z);
             }
+			//?if>=1.21.11{
+			/*@Override
+			public VertexConsumer setLineWidth(float f) {
+				return original.setLineWidth(f);
+			}
+			*///?}
 
-            @Override
-            public VertexConsumer setLineWidth(float f) {
-                return original.setLineWidth(f);
-            }
         };
     }
 }
+

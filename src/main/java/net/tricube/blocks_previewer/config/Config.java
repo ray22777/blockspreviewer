@@ -1,16 +1,16 @@
-package net.ray.blocks_previewer.config;
+package net.tricube.blocks_previewer.config;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.network.chat.Component;
-import net.ray.CraftConfig.api.controller.*;
-import net.ray.CraftConfig.api.registry.CraftConfigRegistry;
-import net.ray.CraftConfig.api.v1.ConfigCategory;
-import net.ray.CraftConfig.api.v1.ConfigKeybinds;
-import net.ray.CraftConfig.api.v1.ConfigOption;
-import net.ray.CraftConfig.api.v1.ConfigSection;
-import net.ray.CraftConfig.api.v1.CraftConfig;
-import net.ray.CraftConfig.api.v1.entries.SelectionGridEntry;
-import net.ray.blocks_previewer.ModInit;
+import net.tricube.CraftConfig.api.controller.*;
+import net.tricube.CraftConfig.api.registry.CraftConfigRegistry;
+import net.tricube.CraftConfig.api.v1.ConfigCategory;
+import net.tricube.CraftConfig.api.v1.ConfigKeybinds;
+import net.tricube.CraftConfig.api.v1.ConfigOption;
+import net.tricube.CraftConfig.api.v1.ConfigSection;
+import net.tricube.CraftConfig.api.v1.CraftConfig;
+import net.tricube.CraftConfig.api.v1.entries.SelectionGridEntry;
+import net.tricube.blocks_previewer.ModInit;
 
 import java.awt.*;
 import java.util.List;
@@ -45,9 +45,16 @@ public class Config {
 			ConfigOption.floatOption(Component.literal("Transparent Opacity"), 0.62f)
 					.description(Component.literal("Opacity for transparent rendering."));
 
+
+
 	public static final ConfigOption<Color> outlineColor =
 			ConfigOption.colorOption(Component.literal("Outline Color"), new Color(Integer.decode("#A8FFF9")))
 					.description(Component.literal("Color setting for outline rendering."));
+
+	public static final ConfigOption<Color> obstructedOutline =
+			ConfigOption.colorOption(Component.literal("Obstructed Color"), new Color(Integer.decode("#FF5555")))
+					.description(Component.literal("Color to show on outline when it the block is obstructed."));
+
 
 	public static final ConfigOption<Boolean> disableOutline =
 			ConfigOption.booleanOption(Component.literal("Disable Vanilla Outline"), true)
@@ -91,7 +98,11 @@ public class Config {
 											.notify(false)))
 							.build())
 					.section(ConfigSection.builder(Component.literal("Rendering"))
-							.option(previewMode.controller(new EnumController<>()))
+							.option(previewMode.controller(new EnumController<>())
+									.keybind(ConfigKeybinds.create()
+											.defaultKey(InputConstants.UNKNOWN.getValue())
+											.mode(ConfigKeybinds.Mode.TOGGLE)
+											.notify(true)))
 							.option(transparentOpacity.controller(new SliderController<>(0.0f, 1.0f)))
 							.option(outlineColor.controller(new ColorController()))
 							.option(disableOutline.controller(new BooleanController()))

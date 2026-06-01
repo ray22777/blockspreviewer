@@ -122,7 +122,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	private fun Project.configureJava(ctx: Context) {
 		extensions.configure<JavaPluginExtension>("java") {
 			withSourcesJar()
-			withJavadocJar()
+//			withJavadocJar()
 			toolchain {
 				languageVersion.set(JavaLanguageVersion.of(ctx.javaVersion.majorVersion))
 			}
@@ -187,7 +187,7 @@ abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 			from(
 				tasks.named(ctx.extension.jarTask.get()),
 				tasks.named(ctx.extension.sourcesJarTask.get()),
-				tasks.named("javadocJar")
+//				tasks.named("javadocJar")
 			)
 			into(rootProject.layout.buildDirectory.file("libs/${ctx.basicVersion}"))
 			dependsOn("build")

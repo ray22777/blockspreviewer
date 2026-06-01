@@ -1,8 +1,8 @@
-package net.ray.blocks_previewer.platform.forge;
+package net.tricube.blocks_previewer.platform.forge;
 
 //? forge {
 
-/*import net.ray.fast_access.platform.Platform;
+/*import net.tricube.fast_access.platform.Platform;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 

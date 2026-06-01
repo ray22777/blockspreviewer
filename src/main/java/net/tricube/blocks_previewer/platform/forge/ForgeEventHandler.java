@@ -1,13 +1,13 @@
-package net.ray.blocks_previewer.platform.forge;
+package net.tricube.blocks_previewer.platform.forge;
 
 //? forge {
 
 /*import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.ray.blocks_previewer.SinglePlayerTab;
+import net.tricube.blocks_previewer.SinglePlayerTab;
 
-import static net.ray.blocks_previewer.ModInit.MOD_ID;
+import static net.blocks_previewer.tricube.ModInit.MOD_ID;
 
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ForgeEventHandler {

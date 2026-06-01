@@ -1,18 +1,19 @@
-package net.ray.blocks_previewer;
+package net.tricube.blocks_previewer;
 
-import net.ray.CraftConfig.platform.Platform;
-import net.ray.blocks_previewer.config.Config;
-import net.minecraft.resources.Identifier;
+import net.tricube.blocks_previewer.platform.Platform;
+import net.tricube.blocks_previewer.config.Config;
+import net.minecraft.resources.ResourceLocation;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //? fabric {
-import net.ray.blocks_previewer.platform.fabric.FabricPlatform;
-//?} neoforge {
-/*import net.ray.blocks_previewer.platform.neoforge.NeoforgePlatform;
- *///?} forge {
-/*import net.ray.blocks_previewer.platform.forge.ForgePlatform;
+/*import net.tricube.blocks_previewer.platform.fabric.FabricPlatform;
+*///?} neoforge {
+import net.tricube.blocks_previewer.platform.neoforge.NeoforgePlatform;
+ //?} forge {
+/*import net.tricube.blocks_previewer.platform.forge.ForgePlatform;
  *///?}
 
 @SuppressWarnings("LoggingSimilarMessage")
@@ -26,12 +27,13 @@ public class ModInit {
 	private static final Platform PLATFORM = createPlatformInstance();
 
 	public static void onInitialize() {
-		Config.init();
+
 //		LOGGER.info("Initializing {} on {}", MOD_ID, ModTemplate.xplat().loader());
 //		LOGGER.debug("{}: { version: {}; friendly_name: {} }", MOD_ID, MOD_VERSION, MOD_FRIENDLY_NAME);
 	}
 
 	public static void onInitializeClient() {
+		Config.init();
 //		LOGGER.info("Initializing {} Client on {}", MOD_ID, ModTemplate.xplat().loader());
 //		LOGGER.debug("{}: { version: {}; friendly_name: {} }", MOD_ID, MOD_VERSION, MOD_FRIENDLY_NAME);
 	}
@@ -42,27 +44,27 @@ public class ModInit {
 
 	private static Platform createPlatformInstance() {
 		//? fabric {
-		return new FabricPlatform();
-		//?} neoforge {
-		/*return new NeoforgePlatform();
-		 *///?} forge {
+		/*return new FabricPlatform();
+		*///?} neoforge {
+		return new NeoforgePlatform();
+		 //?} forge {
 		/*return new ForgePlatform();
 		 *///?}
 	}
 
-	private static Identifier id(String path) {
+	private static ResourceLocation id(String path) {
 		//? >=1.21 {
-		return Identifier.fromNamespaceAndPath(MOD_ID, path);
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 		 //?} < 1.21 {
-		/*return new Identifier(MOD_ID, path);
+		/*return new ResourceLocation(MOD_ID, path);
 		*///?}
 	}
 
-	private static Identifier id(String namespace, String path) {
+	private static ResourceLocation id(String namespace, String path) {
 		//? >=1.21 {
-		return Identifier.fromNamespaceAndPath(namespace, path);
+		return ResourceLocation.fromNamespaceAndPath(namespace, path);
 		//?} < 1.21 {
-		/*return new Identifier(namespace, path);
+		/*return new ResourceLocation(namespace, path);
 		*///?}
 	}
 
